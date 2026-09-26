@@ -1,0 +1,619 @@
+<!DOCTYPE1 html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irson's Goal - Vision & 50-State Ranking</title>
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #1a252f;
+            --accent-color: #27ae60;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            color: var(--secondary-color);
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-top: 0;
+            font-size: 2.2em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 35px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        /* Goal List Styling */
+        .goals-card {
+            background-color: #f0f7ff;
+            border-left: 5px solid var(--primary-color);
+            padding: 20px 25px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .goals-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .goals-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            font-size: 1.05em;
+        }
+
+        .goals-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .target-date {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        /* Focus Area Tags */
+        .focus-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .focus-tag {
+            background: var(--secondary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        /* Criteria Section */
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .criteria-item {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .criteria-item strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Table Styling */
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: #ffffff;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        tr.top-rank {
+            background-color: #e8f4fe;
+            font-weight: bold;
+        }
+
+        tr.top-rank td:first-child {
+            color: var(--primary-color);
+            font-size: 1.1em;
+        }
+
+        .score-badge {
+            background-color: #e2e8f0;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-align: center;
+            display: inline-block;
+            min-width: 35px;
+        }
+
+        tr.top-rank .score-badge {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Highlight Section */
+        .highlight-box {
+            background: #eef9f2;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .highlight-box h3 {
+            color: #155724;
+            margin-top: 0;
+        }
+
+        /* Declaration Box */
+        .declaration {
+            text-align: center;
+            font-style: italic;
+            background: #fff9e6;
+            border: 1px solid #ffebabaa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 25px 0;
+            color: #856404;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+            }
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Irson's Goal</h1>
+
+    <div class="goals-card">
+        <ul class="goals-list">
+            <li>All ears are good listening, healed, and able to hear more clearly.</li>
+            <li>The whole body is complete, perfect, functioning well, and normal.</li>
+            <li>Single, no girlfriend, live together with Dad, Mom, and Kelly, no need to think about girls anymore.</li>
+            <li>God has given us to live in the best country for us, which is live in the United States.</li>
+            <li>Finished Learning Web Development. <span class="target-date">Target: Oct 1, 2027</span></li>
+            <li>I want to work remotely for a U.S. company. <span class="target-date">Target: Nov 30, 2027</span></li>
+            <li>Get medical treatment for Grandma (Nainai) in the United States, so that Grandma stays healthy and lives a long life. <span class="target-date">Target: Oct 1, 2028</span></li>
+            <li>Buy a Tesla car to take road trips around New York, Long Island, Upstate, and out of state; travel around the United States, no need to travel abroad anymore. <span class="target-date">Target: May 15, 2029</span></li>
+            <li>Buy a home at 83-45 Vietor Avenue, Elmhurst, Queens, New York; live in the United States, the best country, no need to move, no need to think about other countries anymore. <span class="target-date">Target: Jun 30, 2030</span></li>
+            <li>We live and travel in the United States, visit family in Indonesia; only 2 countries, no need to go anywhere else abroad. <span class="target-date">Target: Jan 1, 2035</span></li>
+        </ul>
+    </div>
+
+    <h3>Achieved by focusing on:</h3>
+    <div class="focus-container">
+        <div class="focus-tag">Learning Web Development</div>
+        <div class="focus-tag">Learning English</div>
+        <div class="focus-tag">Learning Chinese (Simplified)</div>
+    </div>
+
+    <div class="declaration">
+        <p>I want this to become real in the future in Irson's Goal.</p>
+        <p>All of this is completely true in Irson's Goal.</p>
+        <p><strong>Dad, Mom, Kelly, and I all remember this very well in Irson's Goal.</strong></p>
+    </div>
+
+    <h2>Irson's Ranking Criteria</h2>
+    <p>To evaluate each state, four key factors were weighted based on Irson's vision:</p>
+    <div class="criteria-grid">
+        <div class="criteria-item">
+            <strong>40% Weight</strong>
+            New York Location & Elmhurst Goal (Direct access to NY, Elmhurst, Queens, Long Island, Tesla road trips).
+        </div>
+        <div class="criteria-item">
+            <strong>30% Weight</strong>
+            World-Class Healthcare for Grandma (Elite hospital systems, Asian healthcare networks, specialized care).
+        </div>
+        <div class="criteria-item">
+            <strong>20% Weight</strong>
+            Tech & Remote Web Ecosystem (Strong tech economy, concentration of remote software engineering roles).
+        </div>
+        <div class="criteria-item">
+            <strong>10% Weight</strong>
+            Family Livability & Infrastructure (Quality of life, EV charging density, safety for living as a family).
+        </div>
+    </div>
+
+    <h2>Full 50-State Ranking for Irson's Goal</h2>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 8%;">Rank</th>
+                    <th style="width: 20%;">State</th>
+                    <th style="width: 12%;">Score</th>
+                    <th style="width: 60%;">Alignment with Irson's Goals</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="top-rank">
+                    <td>1</td>
+                    <td>New York</td>
+                    <td><span class="score-badge">100</span></td>
+                    <td><strong>The Exact Goal:</strong> Contains Elmhurst, Queens, Long Island road trip routes, world-class medical centers (NewYork-Presbyterian, Mount Sinai) for Grandma, and a massive remote web development market.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>New Jersey</td>
+                    <td><span class="score-badge">88</span></td>
+                    <td>Bordering New York; easy driving distance to Queens/Long Island, top-tier healthcare systems, high concentration of remote tech jobs.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Connecticut</td>
+                    <td><span class="score-badge">84</span></td>
+                    <td>Adjacent to NY; great road trip proximity, excellent healthcare facilities, strong tech talent base.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Massachusetts</td>
+                    <td><span class="score-badge">81</span></td>
+                    <td>Top-ranked healthcare nationally (Boston hospitals), strong tech industry, within driveable road trip distance to New York.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Pennsylvania</td>
+                    <td><span class="score-badge">78</span></td>
+                    <td>Close proximity to New York, strong tech/healthcare hubs in Philadelphia and Pittsburgh, dense Tesla Supercharger network.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>California</td>
+                    <td><span class="score-badge">75</span></td>
+                    <td>Top-tier tech remote job market, world-class healthcare, but far from Elmhurst, Queens.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Maryland</td>
+                    <td><span class="score-badge">74</span></td>
+                    <td>Accessible to NY by car; features world-renowned healthcare (Johns Hopkins) for Grandma and strong tech sectors.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Virginia</td>
+                    <td><span class="score-badge">73</span></td>
+                    <td>Strong tech employment base, solid healthcare, reachable drive to New York.</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Washington</td>
+                    <td><span class="score-badge">71</span></td>
+                    <td>Massive tech ecosystem (remote developer jobs), top healthcare, but across the country from New York.</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Delaware</td>
+                    <td><span class="score-badge">70</span></td>
+                    <td>Mid-Atlantic location within driving distance to NY; low taxes, good regional medical care.</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Rhode Island</td>
+                    <td><span class="score-badge">69</span></td>
+                    <td>Short drive to New York; access to regional Northeast health centers.</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Vermont</td>
+                    <td><span class="score-badge">68</span></td>
+                    <td>Direct Northeast road trip destination from New York; safe and peaceful.</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>New Hampshire</td>
+                    <td><span class="score-badge">67</span></td>
+                    <td>Excellent livability and health outcomes; great Northeast location.</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Illinois</td>
+                    <td><span class="score-badge">66</span></td>
+                    <td>Strong tech hub (Chicago), top healthcare institutions, central remote job market.</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Florida</td>
+                    <td><span class="score-badge">65</span></td>
+                    <td>Strong economic growth; popular road trip destination from NY, but lacks immediate physical proximity to Elmhurst.</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>North Carolina</td>
+                    <td><span class="score-badge">64</span></td>
+                    <td>Research Triangle tech market; good healthcare and East Coast location.</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>Maine</td>
+                    <td><span class="score-badge">63</span></td>
+                    <td>Great Upstate/Northeast road trip destination; high quality of life.</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Georgia</td>
+                    <td><span class="score-badge">62</span></td>
+                    <td>Major Atlanta tech hub and airport access for family trips to Indonesia.</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Texas</td>
+                    <td><span class="score-badge">61</span></td>
+                    <td>Huge tech market (remote developer opportunities), but far from New York and lower overall health coverage rankings.</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>Colorado</td>
+                    <td><span class="score-badge">60</span></td>
+                    <td>Tech-friendly state with high quality of life, but distant from Queens.</td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>Minnesota</td>
+                    <td><span class="score-badge">59</span></td>
+                    <td>Home to Mayo Clinic (top healthcare), but far midwestern climate and location.</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>Ohio</td>
+                    <td><span class="score-badge">58</span></td>
+                    <td>Cleveland Clinic offers elite healthcare, but lower regional alignment with New York.</td>
+                </tr>
+                <tr>
+                    <td>23</td>
+                    <td>Michigan</td>
+                    <td><span class="score-badge">57</span></td>
+                    <td>Good Midwest economy, moderate healthcare access.</td>
+                </tr>
+                <tr>
+                    <td>24</td>
+                    <td>Wisconsin</td>
+                    <td><span class="score-badge">56</span></td>
+                    <td>Solid livability rankings, but far from East Coast target locations.</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td>Utah</td>
+                    <td><span class="score-badge">55</span></td>
+                    <td>Strong tech sector ("Silicon Slopes"), but distant from NY.</td>
+                </tr>
+                <tr>
+                    <td>26</td>
+                    <td>Arizona</td>
+                    <td><span class="score-badge">54</span></td>
+                    <td>Growing tech scene, but far southwest location.</td>
+                </tr>
+                <tr>
+                    <td>27</td>
+                    <td>South Carolina</td>
+                    <td><span class="score-badge">53</span></td>
+                    <td>East Coast location, but weaker medical and tech infrastructure compared to NY.</td>
+                </tr>
+                <tr>
+                    <td>28</td>
+                    <td>Oregon</td>
+                    <td><span class="score-badge">52</span></td>
+                    <td>Good tech presence, but geographically opposite to Queens.</td>
+                </tr>
+                <tr>
+                    <td>29</td>
+                    <td>Missouri</td>
+                    <td><span class="score-badge">51</span></td>
+                    <td>Central location, moderate tech/medical options.</td>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td>Indiana</td>
+                    <td><span class="score-badge">50</span></td>
+                    <td>Central Midwest, average tech and medical access.</td>
+                </tr>
+                <tr>
+                    <td>31</td>
+                    <td>Tennessee</td>
+                    <td><span class="score-badge">49</span></td>
+                    <td>Healthcare management hub, but lower remote web tech concentration.</td>
+                </tr>
+                <tr>
+                    <td>32</td>
+                    <td>Nevada</td>
+                    <td><span class="score-badge">48</span></td>
+                    <td>Close to West Coast tech, but lower health outcomes score.</td>
+                </tr>
+                <tr>
+                    <td>33</td>
+                    <td>Iowa</td>
+                    <td><span class="score-badge">47</span></td>
+                    <td>High general livability, but limited tech and specialized medical centers.</td>
+                </tr>
+                <tr>
+                    <td>34</td>
+                    <td>Kansas</td>
+                    <td><span class="score-badge">46</span></td>
+                    <td>Low cost of living, limited specialized healthcare.</td>
+                </tr>
+                <tr>
+                    <td>35</td>
+                    <td>Kentucky</td>
+                    <td><span class="score-badge">45</span></td>
+                    <td>Moderate cost, lower ranking in specialized health care.</td>
+                </tr>
+                <tr>
+                    <td>36</td>
+                    <td>Nebraska</td>
+                    <td><span class="score-badge">44</span></td>
+                    <td>Stable economy, but disconnected from New York target goals.</td>
+                </tr>
+                <tr>
+                    <td>37</td>
+                    <td>Alabama</td>
+                    <td><span class="score-badge">43</span></td>
+                    <td>Lower rankings for healthcare outcomes and tech job density.</td>
+                </tr>
+                <tr>
+                    <td>38</td>
+                    <td>Oklahoma</td>
+                    <td><span class="score-badge">42</span></td>
+                    <td>Lower scores in healthcare access and specialized treatment options.</td>
+                </tr>
+                <tr>
+                    <td>39</td>
+                    <td>Louisiana</td>
+                    <td><span class="score-badge">41</span></td>
+                    <td>Lower health outcome metrics and tech job availability.</td>
+                </tr>
+                <tr>
+                    <td>40</td>
+                    <td>Arkansas</td>
+                    <td><span class="score-badge">40</span></td>
+                    <td>Limited high-tech remote markets and specialized medical centers.</td>
+                </tr>
+                <tr>
+                    <td>41</td>
+                    <td>Mississippi</td>
+                    <td><span class="score-badge">39</span></td>
+                    <td>Ranks lowest in general healthcare outcome metrics nationally.</td>
+                </tr>
+                <tr>
+                    <td>42</td>
+                    <td>West Virginia</td>
+                    <td><span class="score-badge">38</span></td>
+                    <td>Low provider density and healthcare performance metrics.</td>
+                </tr>
+                <tr>
+                    <td>43</td>
+                    <td>New Mexico</td>
+                    <td><span class="score-badge">37</span></td>
+                    <td>Remote location, lower overall infrastructure for specialized care.</td>
+                </tr>
+                <tr>
+                    <td>44</td>
+                    <td>Idaho</td>
+                    <td><span class="score-badge">36</span></td>
+                    <td>High general livability, but low primary care/specialist density.</td>
+                </tr>
+                <tr>
+                    <td>45</td>
+                    <td>Montana</td>
+                    <td><span class="score-badge">35</span></td>
+                    <td>Rural layout, limited Tesla infrastructure and specialized hospital networks.</td>
+                </tr>
+                <tr>
+                    <td>46</td>
+                    <td>Wyoming</td>
+                    <td><span class="score-badge">34</span></td>
+                    <td>Very low population density, limited specialized medical facilities.</td>
+                </tr>
+                <tr>
+                    <td>47</td>
+                    <td>North Dakota</td>
+                    <td><span class="score-badge">33</span></td>
+                    <td>Cold climate, far from New York, limited tech ecosystem.</td>
+                </tr>
+                <tr>
+                    <td>48</td>
+                    <td>South Dakota</td>
+                    <td><span class="score-badge">32</span></td>
+                    <td>Rural structure, far from key Asian medical specialists and NY goals.</td>
+                </tr>
+                <tr>
+                    <td>49</td>
+                    <td>Alaska</td>
+                    <td><span class="score-badge">25</span></td>
+                    <td>High geographic isolation; impossible to road-trip to Elmhurst, Queens.</td>
+                </tr>
+                <tr>
+                    <td>50</td>
+                    <td>Hawaii</td>
+                    <td><span class="score-badge">20</span></td>
+                    <td>Rated #1 for general health, but island geography makes driving a Tesla to New York, Upstate, or Long Island impossible.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="highlight-box">
+        <h3>Why New York is #1 for Irson's Goal</h3>
+        <ul>
+            <li><strong>Elmhurst, Queens Hub:</strong> Elmhurst contains major medical institutions like Elmhurst Hospital Center and proximity to Mount Sinai Queens and NewYork-Presbyterian, providing specialized care with multilingual support for Grandma.</li>
+            <li><strong>Tesla & Local Travel:</strong> Living in Queens allows immediate Tesla road trips across Long Island (Montauk), Upstate New York, and surrounding East Coast states.</li>
+            <li><strong>Remote Web Development:</strong> New York is one of the top hubs for U.S. tech companies offering competitive remote web engineering roles.</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
